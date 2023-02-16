@@ -1,9 +1,9 @@
-file=open(&quot;pythonfile.txt&quot;,&quot;w&quot;)
-file.write(&quot;1. Python was invented by Guido van Rossum.\n2. It is easy to use and Learn.\n3. It supports
-Object Oriented programming &quot;)
+file=open("pythonfile.txt","w")
+file.write("1. Python was invented by Guido van Rossum.\n2. It is easy to use and Learn.\n3. It supports
+Object Oriented programming ")
 file.close()
 
-file=open(&quot;pythonfile.txt&quot;,&quot;r&quot;) #(&quot;filename&quot;,&quot;mode of file&quot;)(there are 6 mode)
+file=open("pythonfile.txt","r") 
 file.seek(0,0)
 ff=file.readlines()
 
