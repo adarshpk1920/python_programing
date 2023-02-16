@@ -1,14 +1,14 @@
-file1=open(&quot;pythonfile.txt&quot;,&quot;r&quot;)
+file1=open("pythonfile.txt","r")
 for x in file1:
 print(x)
 file1.seek(0,0)
-print(&quot; &quot;)
+print(" ")
 print()
 
-print(&quot;Odd Line: &quot;,end=&quot; &quot;)
-file2=open(&quot;odd.txt&quot;,&quot;w&quot;)
+print("Odd Line: ",end=" ")
+file2=open("odd.txt","w")
 ff=file1.readlines()
-with open(&#39;odd.txt&#39;,&#39;w&#39;) as file2:
+with open('odd.txt','w') as file2:
 for x in range(0,len(ff)):
 if(x%2!=0):
 print(ff[x])
