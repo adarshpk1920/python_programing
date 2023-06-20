@@ -1,0 +1,238 @@
+
+DATA MANIPULATION LANGUAGES (DCL) COMMANDS
+
+1 Show all records of Sailors 
+
+
+SQL> select * from sailors;
+
+       SID SNAME                    RATING        AGE
+---------- -------------------- ---------- ----------
+        22 dustin                        7         45
+        29 brutus                        1         33
+        31 lubber                        8         56
+        32 andy                          8         26
+        58 rusty                        10         35
+        64 horatio                       7         35
+        71 zorba                        10         16
+        74 horatio                       9         35
+        95 bob                           3         64
+
+9 rows selected.
+
+2 Show all records of Boats 
+
+SQL> SELECT * FROM BOAT;
+
+       BID BNAME                COLOR
+---------- -------------------- -------------
+       101 interlake            blue
+       102 interlake            clipper
+       103 clipper              green
+       104 marine               red
+
+3  Show all records of Reserves 
+
+
+SQL> select * from reserves;
+
+       SID        BID DAY
+---------- ---------- ---------
+        22        101 10-OCT-98
+        22        102 10-OCT-98
+        22        103 08-OCT-98
+        22        104 07-OCT-98
+        31        102 10-NOV-98
+        31        103 06-NOV-98
+        31        104 12-NOV-98
+        64        101 05-SEP-98
+        64        102 08-SEP-98
+        74        103 08-SEP-98
+
+10 rows selected.
+
+4  Find the names and ages of all sailors. 
+
+
+SQL> select sname,age from sailors;
+
+SNAME                       AGE
+-------------------- ----------
+dustin                       45
+brutus                       33
+lubber                       56
+andy                         26
+rusty                        35
+horatio                      35
+zorba                        16
+horatio                      35
+bob                          64
+
+9 rows selected.
+
+5 Find all sailors with a rating above 8. 
+
+SQL> select * from sailors where rating>8;
+
+       SID SNAME                    RATING        AGE
+---------- -------------------- ---------- ----------
+        58 rusty                        10         35
+        71 zorba                        10         16
+        74 horatio                       9         35
+
+6 Find sailors name with a rating above 7 & age above 25. 
+
+SQL> select * from sailors where rating>7 and age>25;
+
+       SID SNAME                    RATING        AGE
+---------- -------------------- ---------- ----------
+        31 lubber                        8         56
+        32 andy                          8         26
+        58 rusty                        10         35
+        74 horatio                       9         35
+
+7. Display all the names & colors of the boats
+
+SQL> select bname,color from boat;
+
+BNAME                COLOR
+-------------------- --------------------
+interlake            blue
+interlake            clipper
+clipper              green
+marine               red
+
+8. Find all the boats with Red color. 
+
+
+SQL> select * from boat where color='red';
+
+       BID BNAME                COLOR
+---------- -------------------- ---------------
+       104 marine               red
+
+9 Find the names of sailors who have reserved boat number 103
+
+SQL> SELECT * FROM RESERVES WHERE BID=103;
+
+       SID        BID DAY
+---------- ---------- ---------
+        22        103 08-OCT-98
+        31        103 06-NOV-98
+        74        103 08-SEP-98
+\
+
+
+SQL>  select distinct s.sname from Sailors s,Reserves R1,Reserves R2 where s.sid=R1.sid and s.sid=R2
+.sid and r1.bid!=R2.bid;
+
+SNAME
+--------------------
+lubber
+dustin
+horatio
+
+AGGREGATE FUNCTIONS
+
+ 2) To count numbers of boats booked in Reserves table. 
+
+SQL> select count (distinct bid)from reserves;
+
+COUNT(DISTINCTBID)
+------------------
+                 4
+
+ 3) To count number of Boats in Boats table. 
+
+
+SQL> SELECT COUNT (DISTINCT BID)FROM BOAT;
+
+COUNT(DISTINCTBID)
+------------------
+                 4
+
+
+2. SUM (A) :- The sum of all values in the A column. 
+SQL> SELECT SUM (RATING) FROM SAILORS;
+
+SUM(RATING)
+-----------
+         63
+SQL> SELECT SUM (DISTINCT RATING) FROM SAILORS;
+
+SUM(DISTINCTRATING)
+-------------------
+                 38
+2) To find sum of distinct age of Sailors (Duplicate ages are eliminated)
+
+SQL> SELECT SUM(DISTINCT AGE) FROM SAILORS;
+
+SUM(DISTINCTAGE)
+----------------
+             275
+
+3. AVG (A) :- The average of all values in the A column. 
+ Or AVG (DISTINCT A): The average of all unique values in the A column. Ex:- 
+2) To find average of distinct age of Sailors (Duplicate ages are eliminated).
+
+SQL> SELECT AVG(DISTINCT AGE) FROM SAILORS;
+
+AVG(DISTINCTAGE)
+----------------
+      39.2857143
+
+ORDER BY Clause :- The ORDER BY keyword is used to sort the result-set by a 
+specified column. The ORDER BY keyword sorts the records in ascending order
+
+SQL> SELECT * FROM SAILORS ORDER BY SNAME;
+
+       SID SNAME                    RATING        AGE
+---------- -------------------- ---------- ----------
+        32 andy                          8         26
+        95 bob                           3         64
+        29 brutus                        1         33
+        22 dustin                        7         45
+        64 horatio                       7         35
+        74 horatio                       9         35
+        31 lubber                        8         56
+        58 rusty                        10         35
+        71 zorba                        10         16
+
+9 rows selected.
+
+ ORDER BY DESENDING ORDER
+
+
+SQL> SELECT * FROM SAILORS ORDER BY SNAME DESC;
+
+       SID SNAME                    RATING        AGE
+---------- -------------------- ---------- ----------
+        71 zorba                        10         16
+        58 rusty                        10         35
+        31 lubber                        8         56
+        64 horatio                       7         35
+        74 horatio                       9         35
+        22 dustin                        7         45
+        29 brutus                        1         33
+        95 bob                           3         64
+        32 andy                          8         26
+
+9 rows selected.
+
+DISPLAY THE DETAILS OF SAILOR IN THE ORDER OF THE RATING
+
+SQL> SELECT * FROM SAILORS ORDER BY RATING DESC;
+
+       SID SNAME                    RATING        AGE
+---------- -------------------- ---------- ----------
+        58 rusty                        10         35
+        71 zorba                        10         16
+        74 horatio                       9         35
+        31 lubber                        8         56
+        32 andy                          8         26
+        64 horatio                       7         35
+        22 dustin                        7         45
+        95 bob                           3         64
+        29 brutus                        1         33
+
+9 rows selected.
